@@ -3,7 +3,8 @@ from flask import request, jsonify, Blueprint
 
 user_api = Blueprint('user_api', __name__)
 
-
+# This service getting username and password and validate if user exists in DB, if not will return 401,
+# if exists and correct will return 200 and new session id
 @user_api.route("/login", methods=['POST'])
 def login():
     try:
@@ -28,6 +29,7 @@ def login():
         return e.args[0], 500
 
 
+# Validate the loginData has username and password fields
 def isValidRequest(loginData):
     if loginData is None or loginData.get('username') is None or \
             loginData.get('password') is None or len(loginData.get('username')) == 0 or \
@@ -36,6 +38,8 @@ def isValidRequest(loginData):
     return True
 
 
+# The service getting username and password and try to insert new user to the DB,
+# if already exists return 409, if not save user in DB and return new session id
 @user_api.route("/signup", methods=['POST'])
 def signup():
     try:
@@ -62,6 +66,7 @@ def signup():
         return e.args[0], 500
 
 
+# This service providing the user links from the DB by the session id
 @user_api.route("/userlinks")
 def userLinks():
     try:
@@ -78,7 +83,7 @@ def userLinks():
     except Exception as e:
         return e.args[0], 500
 
-
+# This service insert new url to the DB by the session id
 @user_api.route("/addurl", methods=['POST'])
 def addUrl():
     try:
@@ -98,6 +103,7 @@ def addUrl():
         return e.args[0], 500
 
 
+# This service remove an exists url from the DB by the session id
 @user_api.route("/removeurl", methods=['PUT'])
 def removeUrl():
     try:

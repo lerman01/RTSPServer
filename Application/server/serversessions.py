@@ -1,7 +1,8 @@
 import datetime
 import uuid
 
-
+# This class responsible for managing server sessions.
+# Providing services for insert new session, get username by session id and validate if session is still valid
 class ServerSessions:
     sessionExpirationTime = 1  # Session expiration time in hours
 
