@@ -1,0 +1,116 @@
+.App {
+    text-align: center;
+    width: 1800px;
+    margin: 50px auto auto;
+    border-radius: 14px !important;
+    animation: openanim 0.7s 1;
+    animation-fill-mode: forwards;
+}
+
+#header {
+    padding: 10px;
+}
+
+.btn {
+    padding: 10px !important;
+    margin: 30px 30px 0px 30px !important;
+    width: 105px;
+    font-size: 18px !important;
+}
+
+.app-logo {
+    font-size: 60px;
+    font-weight: bold;
+    color: #303f9f;
+    user-select: none;
+}
+
+.fadein {
+    opacity: 0;
+    animation: fadein 0.5s 1;
+    animation-fill-mode: forwards;
+    animation-delay: 0.2s;
+}
+
+.input {
+    margin: 10px !important;
+    width: 350px;
+}
+
+.fadeout {
+    opacity: 1;
+    animation: fadeout 0.3s 1;
+    animation-fill-mode: forwards;
+}
+
+.body {
+    margin: auto;
+    padding: 5px;
+    transition: 1s !important;
+    width: 0px;
+    height: 0px;
+}
+
+.login {
+    height: 30%;
+    width: 55%;
+    margin: auto;
+}
+
+.user {
+    width: 90%;
+    height: 75%;
+}
+
+
+.msg-container {
+    height: 70px;
+}
+
+.msg-container > div {
+    opacity: 0;
+    width: 550px;
+    margin: auto;
+    padding: 10px;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    border-radius: 15px;
+}
+
+.info {
+    color: #00008b;
+    background-color: #e2e2ff;
+    border: 1px solid #0000a857;
+}
+
+.error {
+    color: #a80000;
+    background-color: #ffe2e2;
+    border: 1px solid #a8000057;
+}
+
+@keyframes openanim {
+    from {
+        height: 0px;
+    }
+    to {
+        height: 850px;
+    }
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

@@ -1,0 +1,43 @@
+.section-container {
+    width: 800px;
+    margin: auto;
+}
+
+.section-title {
+    float: left;
+    font-weight: bold;
+    color: #cfcfcf;
+    padding-bottom: 5px;
+}
+
+#userLinks {
+    overflow-y: scroll;
+    width: 800px;
+    margin: auto;
+    height: 140px;
+}
+
+#videoPlayer {
+    border: 1px solid #00000096;
+    margin: auto;
+    height: 360px;
+    width: 800px;
+    overflow: hidden;
+}
+
+#addNewUrl {
+    width: 800px;
+    margin: auto;
+    height: 50px;
+}
+
+#addUrlButton {
+    float: right;
+    margin: 13px;
+    height: 32px;
+}
+
+
+#addNewUrlInput {
+    width: 670px;
+}

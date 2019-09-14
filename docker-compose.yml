@@ -1,0 +1,45 @@
+version: "3"
+volumes:
+  shareddata: {}
+services:
+  db:
+    image: postgres
+    networks:
+        - webnet
+    environment:
+        POSTGRES_DB: postgres
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: 123456
+    ports:
+        - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  server:
+    image: python:3
+    ports:
+        - "3000:3000"
+    networks:
+        - webnet
+    volumes:
+        - ./Application/server:/app/server
+        - shareddata:/staticdata
+    command:
+          sh -c "pip install psycopg2 &&
+          pip install flask &&
+          pip install opencv-python &&
+          python /app/server/rtspserver.py"
+    environment:
+        DB_HOST: db
+    expose:
+      - "3000"
+  client:
+    image: node:10.16.3
+    networks:
+      - webnet
+    volumes:
+      - ./Application/client:/app/client
+      - shareddata:/staticdata
+    working_dir: /app/client/
+    command: sh -c "npm install && npx webpack && cp -a static/. /staticdata/"
+networks:
+  webnet:
