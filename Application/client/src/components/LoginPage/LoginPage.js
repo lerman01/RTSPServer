@@ -5,6 +5,9 @@ import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {PostgresAPI} from "../../services/PostgresAPI";
 
+/*
+This component responsible for the Login page, responsible for two main functionalities, login and signup
+ */
 class LoginPage extends Component {
 
     constructor(props) {

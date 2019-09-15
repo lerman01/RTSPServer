@@ -14,6 +14,10 @@ import Chip from "@material-ui/core/Chip";
 import Cookies from 'universal-cookie';
 import {PostgresAPI} from "../../services/PostgresAPI";
 
+/*
+This component responsible for the User Page, showing the current user links, provide the functionality to add a new link as well
+and shows the stream content of the chosen url
+ */
 class UserPage extends Component {
 
     constructor(props) {

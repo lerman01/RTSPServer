@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import './App.css';
 import Card from "@material-ui/core/Card";
-import LoginPage from "./components/LoginPage/LoginPage";
-import UserPage from "./components/UserPage/UserPage";
-import {PostgresAPI} from "./services/PostgresAPI";
+import LoginPage from "../LoginPage/LoginPage";
+import UserPage from "../UserPage/UserPage";
+import {PostgresAPI} from "../../services/PostgresAPI";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import Cookies from 'universal-cookie';
 
-
+/*
+    This is the main application component, responsible for displaying the correct inner components according to the state
+ */
 class App extends Component {
 
     constructor(props) {

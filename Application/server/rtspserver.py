@@ -27,7 +27,7 @@ def initServer():
 # On invalid request redirecting to index.html
 @app.errorhandler(404)
 def page_not_found(e):
-    return redirect("/index.html", code=302)
+    return redirect("/404.html", code=302)
 
 
 # Return 500 error on any unhandled errors

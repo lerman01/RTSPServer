@@ -27,6 +27,7 @@ services:
           sh -c "pip install psycopg2 &&
           pip install flask &&
           pip install opencv-python &&
+          cp /app/server/404.html /staticdata/ && 
           python /app/server/rtspserver.py"
     environment:
         DB_HOST: db
@@ -41,5 +42,6 @@ services:
       - shareddata:/staticdata
     working_dir: /app/client/
     command: sh -c "npm install && npx webpack && cp -a static/. /staticdata/"
+    
 networks:
   webnet:
