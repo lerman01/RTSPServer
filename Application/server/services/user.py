@@ -3,6 +3,7 @@ from flask import request, jsonify, Blueprint
 
 user_api = Blueprint('user_api', __name__)
 
+
 # This service getting username and password and validate if user exists in DB, if not will return 401,
 # if exists and correct will return 200 and new session id
 @user_api.route("/login", methods=['POST'])
@@ -26,6 +27,11 @@ def login():
                 resp.set_cookie('session_id', session_id)
                 return resp
     except Exception as e:
+        try:
+            user_api.dbConnection.rollback()
+            cursor.close()
+        except:
+            pass
         return e.args[0], 500
 
 
@@ -61,8 +67,14 @@ def signup():
                 session_id = user_api.serverSessions.insertNewSession(login_data.get('username'))
                 resp = flask.make_response({"username": login_data.get('username'), 'session_id': session_id})
                 resp.set_cookie('session_id', session_id)
+
                 return resp
     except Exception as e:
+        try:
+            user_api.dbConnection.rollback()
+            cursor.close()
+        except:
+            pass
         return e.args[0], 500
 
 
@@ -82,6 +94,7 @@ def userLinks():
             return "Invalid session ID ", 401
     except Exception as e:
         return e.args[0], 500
+
 
 # This service insert new url to the DB by the session id
 @user_api.route("/addurl", methods=['POST'])

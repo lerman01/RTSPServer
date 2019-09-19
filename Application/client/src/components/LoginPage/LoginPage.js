@@ -52,25 +52,37 @@ class LoginPage extends Component {
                     this.props.showMsg("Fail to login (Code: " + err.response.status + ", Error: " + err.response.data + ")", "error");
                 }
             }).finally(() => {
+                this.props.hideMsg();
                 this.hideSpinner('login');
             });
         }
     }
 
     signup() {
-        this.showSpinner('signup');
-        PostgresAPI.signup(this.state.username, this.state.password).then((res) => {
-            this.props.setUser(res.data.username);
-            this.props.switchMode('user')
-        }).catch((err) => {
-            if (err.response.status === 409) {
-                this.props.showMsg("Username already exists", "error");
-            } else {
-                this.props.showMsg("Fail to signup (Code: " + err.response.status + ", Error: " + err.response.data + ")", "error");
-            }
-        }).finally(() => {
-            this.hideSpinner('signup');
-        });
+        if (this.state.username.length == 0) {
+            this.props.showMsg("Please enter username", "error");
+        } else if (this.state.username.length > 50) {
+            this.props.showMsg("Username too long, username length 1 - 50", "info");
+        } else if (this.state.password.length == 0) {
+            this.props.showMsg("Please enter password", "error");
+        } else if (this.state.password.length > 50) {
+            this.props.showMsg("Password too long, password length 1 - 50", "info");
+        } else {
+            this.showSpinner('signup');
+            PostgresAPI.signup(this.state.username, this.state.password).then((res) => {
+                this.props.setUser(res.data.username);
+                this.props.switchMode('user')
+            }).catch((err) => {
+                if (err.response.status === 409) {
+                    this.props.showMsg("Username already exists", "error");
+                } else {
+                    this.props.showMsg("Fail to signup (Code: " + err.response.status + ", Error: " + err.response.data + ")", "error");
+                }
+            }).finally(() => {
+                this.props.hideMsg();
+                this.hideSpinner('signup');
+            });
+        }
     }
 
     showSpinner(button) {

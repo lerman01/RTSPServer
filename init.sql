@@ -1,7 +1,7 @@
 CREATE TABLE public."USERS"
 (
-    "USERNAME" character varying(10) COLLATE pg_catalog."default" NOT NULL,
-    "PASSWORD" character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    "USERNAME" character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    "PASSWORD" character varying(50) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT "USERS_pkey" PRIMARY KEY ("USERNAME")
 )
 WITH (
