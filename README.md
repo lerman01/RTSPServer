@@ -6,3 +6,4 @@
 3. Wait until client container is done (First build can take longer), the following log indicates the client container done : 
 > rtspserver_client_1 exited with code 0
 4. Login to : http://localhost:3000/index.html
+
